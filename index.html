@@ -1,0 +1,1445 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Autoconhecimento aplicado à vida real, ao desenvolvimento profissional e às relações de equipe com Elton Tarnhovi."
+    />
+    <meta name="theme-color" content="#10234a" />
+    <title>Elton Tarnhovi | Autoconhecimento e desenvolvimento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montaga&family=Mona+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --navy: #10234a;
+        --navy-deep: #071632;
+        --blue: #5878c3;
+        --blue-soft: #9db0e6;
+        --orange: #f4470b;
+        --orange-dark: #c93606;
+        --ink: #192746;
+        --muted: #536079;
+        --paper: #fff;
+        --mist: #f2f3f5;
+        --serif: "Montaga", Georgia, serif;
+        --sans: "Mona Sans", Arial, sans-serif;
+        --page-width: 1240px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--sans);
+        -webkit-font-smoothing: antialiased;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .serif,
+      h1,
+      h2,
+      h3 {
+        font-family: var(--serif);
+        font-weight: 400;
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      .section-shell {
+        width: min(calc(100% - 56px), var(--page-width));
+        margin-inline: auto;
+      }
+
+      .eyebrow {
+        display: block;
+        margin-bottom: 11px;
+        color: var(--orange);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.34em;
+        line-height: 1.4;
+        text-transform: uppercase;
+      }
+
+      .button {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 24px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        background: linear-gradient(110deg, #ff4a05, #c93405);
+        box-shadow: 0 5px 16px rgb(255 68 13 / 45%);
+        color: #fff;
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.15;
+        text-align: center;
+        text-decoration: none;
+        transition: transform 180ms ease, box-shadow 180ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 22px rgb(255 68 13 / 50%);
+      }
+
+      .button:focus-visible,
+      a:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid #f9a17e;
+        outline-offset: 4px;
+      }
+
+      .button--blue {
+        background: linear-gradient(110deg, #14264d, #6a85ca);
+        box-shadow: 0 5px 16px rgb(33 58 112 / 42%);
+      }
+
+      .hero {
+        position: relative;
+        min-height: 700px;
+        height: clamp(700px, 63vw, 870px);
+        overflow: hidden;
+        background: var(--navy-deep);
+        color: #fff;
+        isolation: isolate;
+      }
+
+      .hero__image,
+      .hero__image img {
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero__image img {
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .hero::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(90deg, rgb(5 18 44 / 16%), transparent 68%);
+        content: "";
+        pointer-events: none;
+      }
+
+      .hero__content {
+        position: absolute;
+        top: 35%;
+        left: max(5.4%, calc((100% - var(--page-width)) / 2));
+        width: min(42%, 540px);
+      }
+
+      .hero h1 {
+        max-width: 590px;
+        margin-bottom: 17px;
+        font-size: clamp(44px, 5.05vw, 72px);
+        line-height: 0.99;
+        letter-spacing: -0.025em;
+      }
+
+      .hero__lead {
+        max-width: 500px;
+        margin-bottom: 24px;
+        color: rgb(255 255 255 / 89%);
+        font-size: clamp(14px, 1.12vw, 17px);
+        line-height: 1.5;
+      }
+
+      .hero__actions {
+        display: flex;
+        max-width: 450px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
+
+      .hero__actions .button {
+        min-width: 300px;
+      }
+
+      .hero__actions .button--blue {
+        border-color: rgb(255 255 255 / 16%);
+      }
+
+      .intro {
+        padding: 62px 0 46px;
+      }
+
+      .intro__layout {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 0.98fr);
+        grid-template-areas: "copy gallery";
+        align-items: center;
+        gap: clamp(34px, 5vw, 76px);
+      }
+
+      .intro__copy {
+        grid-area: copy;
+      }
+
+      .intro__copy h2 {
+        max-width: 540px;
+        margin-bottom: 14px;
+        color: var(--navy);
+        font-size: clamp(38px, 4.1vw, 58px);
+        line-height: 0.99;
+      }
+
+      .intro__copy h2 span {
+        display: block;
+        color: var(--orange);
+      }
+
+      .intro__copy p {
+        max-width: 565px;
+        margin-bottom: 11px;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .intro__copy p:last-child {
+        margin-bottom: 0;
+      }
+
+      .photo-collage {
+        display: grid;
+        grid-area: gallery;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: minmax(160px, 1.25fr) minmax(132px, 1fr);
+        gap: 9px;
+      }
+
+      .photo-collage img {
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+        border: 2px solid var(--orange);
+        border-radius: 14px;
+        object-fit: cover;
+      }
+
+      .photo-collage img:first-child {
+        grid-column: 1 / -1;
+        object-position: center 43%;
+      }
+
+      .photo-collage img:nth-child(2) {
+        object-position: 36% center;
+      }
+
+      .photo-collage img:nth-child(3) {
+        object-position: 49% center;
+      }
+
+      .offers {
+        padding: 34px 0 70px;
+      }
+
+      .offers__grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: clamp(32px, 5vw, 76px);
+      }
+
+      .offer__eyebrow {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--orange);
+        font-size: 11px;
+        font-weight: 600;
+        letter-spacing: 0.33em;
+        text-transform: uppercase;
+      }
+
+      .offer--teams .offer__eyebrow {
+        color: #6681c8;
+      }
+
+      .offer h2 {
+        max-width: 550px;
+        min-height: 2em;
+        margin-bottom: 12px;
+        color: var(--navy);
+        font-size: clamp(35px, 3.55vw, 50px);
+        line-height: 0.99;
+      }
+
+      .offer__description {
+        min-height: 72px;
+        margin-bottom: 14px;
+        color: var(--muted);
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .check-list {
+        display: grid;
+        gap: 7px;
+        margin: 0 0 24px;
+        padding: 0;
+        list-style: none;
+      }
+
+      .check-list li {
+        display: flex;
+        min-height: 37px;
+        align-items: center;
+        gap: 12px;
+        padding: 7px 12px;
+        border-radius: 10px;
+        background: #dedfe1;
+        color: #48546a;
+        font-size: 12px;
+        line-height: 1.35;
+      }
+
+      .check-list li::before {
+        width: 12px;
+        height: 12px;
+        flex: 0 0 12px;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 9px rgb(244 71 11 / 42%);
+        content: "";
+      }
+
+      .offer--teams .check-list li::before {
+        background: var(--navy);
+        box-shadow: 0 0 8px rgb(16 35 74 / 28%);
+      }
+
+      .offer__button {
+        width: 100%;
+        min-height: 52px;
+        padding-inline: 16px;
+        font-size: 15px;
+      }
+
+      .process {
+        padding: 25px 0 80px;
+      }
+
+      .process__title {
+        max-width: 650px;
+        margin: 0 auto 42px;
+        color: #151515;
+        font-size: clamp(40px, 4.35vw, 58px);
+        line-height: 1.02;
+        text-align: center;
+      }
+
+      .steps {
+        display: grid;
+        gap: 14px;
+      }
+
+      .step {
+        display: grid;
+        min-height: 132px;
+        grid-template-columns: 126px 1fr;
+        align-items: center;
+        padding: 16px 26px;
+        border: 2px solid #758bc8;
+        border-radius: 28px;
+        background: #dedfe1;
+      }
+
+      .step__number {
+        display: grid;
+        width: 98px;
+        height: 98px;
+        place-items: center;
+        border-radius: 50%;
+        background: linear-gradient(135deg, #ff4d08, #c93606);
+        box-shadow: 0 5px 12px rgb(198 53 5 / 20%);
+        color: #fff;
+        font-family: var(--serif);
+        font-size: 51px;
+        line-height: 1;
+      }
+
+      .step h3 {
+        margin: 0 0 5px;
+        color: #111;
+        font-size: clamp(30px, 3vw, 42px);
+        line-height: 1.02;
+      }
+
+      .step p {
+        max-width: 790px;
+        margin: 0;
+        color: #303746;
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .about {
+        position: relative;
+        min-height: 690px;
+        overflow: hidden;
+        background: var(--navy);
+        color: #fff;
+        isolation: isolate;
+      }
+
+      .about__image,
+      .about__image img {
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .about__image img {
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .about::after {
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: linear-gradient(90deg, rgb(13 31 68 / 20%), transparent 72%);
+        content: "";
+      }
+
+      .about__copy {
+        position: absolute;
+        top: 50%;
+        left: max(7%, calc((100% - var(--page-width)) / 2));
+        width: min(37%, 470px);
+        transform: translateY(-50%);
+      }
+
+      .about h2 {
+        margin-bottom: 16px;
+        font-size: clamp(48px, 5vw, 68px);
+        line-height: 0.98;
+      }
+
+      .about p {
+        margin-bottom: 12px;
+        color: rgb(255 255 255 / 90%);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+
+      .about__button {
+        width: min(100%, 500px);
+        margin-top: 17px;
+        min-height: 58px;
+        font-size: 18px;
+      }
+
+      .blog {
+        padding: 78px 0 84px;
+      }
+
+      .blog__heading {
+        max-width: 840px;
+        margin: 0 auto 44px;
+        text-align: center;
+      }
+
+      .blog__heading .eyebrow {
+        margin-bottom: 14px;
+      }
+
+      .blog__heading h2 {
+        margin-bottom: 0;
+        color: var(--navy);
+        font-size: clamp(39px, 4.5vw, 60px);
+        line-height: 1.02;
+      }
+
+      .blog__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        align-items: start;
+        gap: 22px;
+      }
+
+      .article-card {
+        overflow: hidden;
+        border: 2px solid var(--orange);
+        border-radius: 29px;
+        background: linear-gradient(155deg, #f0f0f0, #d7d8da);
+        box-shadow: 0 5px 13px rgb(242 70 15 / 20%);
+      }
+
+      .article-card__summary {
+        display: flex;
+        min-height: 360px;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px 25px 23px;
+        cursor: pointer;
+        list-style: none;
+      }
+
+      .article-card__summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .article-card__summary h3 {
+        margin-bottom: 16px;
+        color: #202020;
+        font-size: clamp(24px, 2.3vw, 31px);
+        line-height: 1.08;
+      }
+
+      .article-card__summary p {
+        margin-bottom: 23px;
+        color: #4e5767;
+        font-size: 13px;
+        line-height: 1.5;
+      }
+
+      .article-card__button {
+        min-height: 42px;
+        margin-top: auto;
+        padding: 10px 20px;
+        font-size: 15px;
+      }
+
+      .article-card[open] .article-card__button::after {
+        content: "  −";
+      }
+
+      .article-card:not([open]) .article-card__button::after {
+        content: "  +";
+      }
+
+      .article-card__body {
+        padding: 0 25px 26px;
+        border-top: 1px solid rgb(25 39 70 / 16%);
+        color: #39465d;
+        font-size: 13px;
+        line-height: 1.6;
+      }
+
+      .article-card__body p {
+        margin: 18px 0 0;
+      }
+
+      .contact {
+        position: relative;
+        min-height: 680px;
+        overflow: hidden;
+        background: var(--navy-deep);
+        color: #fff;
+        isolation: isolate;
+      }
+
+      .contact__image,
+      .contact__image img {
+        position: absolute;
+        z-index: -2;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .contact__image img {
+        object-fit: cover;
+        object-position: center;
+      }
+
+      .contact__copy {
+        position: absolute;
+        top: 50%;
+        left: max(5.5%, calc((100% - var(--page-width)) / 2));
+        width: min(35%, 460px);
+        transform: translateY(-50%);
+      }
+
+      .contact h2 {
+        margin-bottom: 18px;
+        font-size: clamp(42px, 4.6vw, 62px);
+        line-height: 0.98;
+      }
+
+      .contact p {
+        margin-bottom: 21px;
+        color: rgb(255 255 255 / 88%);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+
+      .contact__actions {
+        display: grid;
+        justify-items: start;
+        gap: 12px;
+      }
+
+      .contact__actions .button {
+        width: min(100%, 380px);
+        min-height: 47px;
+        font-size: 16px;
+      }
+
+      .faq {
+        padding: 80px 0 84px;
+        background: #fff;
+      }
+
+      .faq__heading {
+        max-width: 760px;
+        margin: 0 auto 36px;
+        text-align: center;
+      }
+
+      .faq__heading h2 {
+        margin-bottom: 11px;
+        color: var(--navy);
+        font-size: clamp(42px, 4.5vw, 60px);
+        line-height: 1;
+      }
+
+      .faq__heading p {
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .faq__list {
+        display: grid;
+        max-width: 1000px;
+        gap: 13px;
+        margin-inline: auto;
+      }
+
+      .faq-item {
+        overflow: hidden;
+        padding: 2px;
+        border-radius: 18px;
+        background: linear-gradient(105deg, #122654 0%, #8ea9ee 48%, #476bc4 100%);
+      }
+
+      .faq-item summary {
+        display: flex;
+        min-height: 72px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        padding: 18px 24px;
+        color: var(--navy);
+        cursor: pointer;
+        font-family: var(--serif);
+        font-size: clamp(21px, 2.1vw, 28px);
+        line-height: 1.12;
+        list-style: none;
+        background: #fff;
+        border-radius: 16px;
+      }
+
+      .faq-item summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .faq-item__arrow {
+        position: relative;
+        display: grid;
+        width: 38px;
+        height: 38px;
+        flex: 0 0 38px;
+        place-items: center;
+        border-radius: 50%;
+        background: rgb(244 71 11 / 10%);
+        transition: transform 180ms ease, background 180ms ease;
+      }
+
+      .faq-item__arrow::before {
+        width: 11px;
+        height: 11px;
+        margin-top: -5px;
+        border-right: 3px solid var(--orange);
+        border-bottom: 3px solid var(--orange);
+        content: "";
+        transform: rotate(45deg);
+      }
+
+      .faq-item[open] .faq-item__arrow {
+        background: var(--orange);
+        transform: rotate(180deg);
+      }
+
+      .faq-item[open] .faq-item__arrow::before {
+        border-color: #fff;
+      }
+
+      .faq-item[open] summary {
+        border-radius: 16px 16px 0 0;
+      }
+
+      .faq-item__answer {
+        max-width: 870px;
+        margin: 0;
+        padding: 0 80px 22px 24px;
+        color: #566176;
+        font-size: 14px;
+        line-height: 1.6;
+        background: #fff;
+        border-radius: 0 0 16px 16px;
+      }
+
+      .footer {
+        padding: 42px 0 37px;
+        background: linear-gradient(110deg, #f5470b, #d83e04);
+        color: #fff;
+      }
+
+      .footer__inner {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 30px;
+      }
+
+      .footer__brand {
+        max-width: 380px;
+        margin: 0;
+        font-size: 17px;
+        line-height: 1.3;
+      }
+
+      .footer__brand strong {
+        display: block;
+        font-weight: 500;
+      }
+
+      .footer__links {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        gap: 8px 14px;
+        margin: 3px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .footer__links a {
+        color: rgb(255 255 255 / 94%);
+        font-family: var(--serif);
+        font-size: 15px;
+        text-decoration: none;
+      }
+
+      .footer__links a:hover {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+
+      @media (max-width: 760px) {
+        .section-shell {
+          width: min(calc(100% - 38px), 560px);
+        }
+
+        .hero {
+          min-height: 680px;
+          height: min(220vw, 900px);
+        }
+
+        .hero__image img {
+          object-position: center 24%;
+        }
+
+        .hero::after {
+          background: linear-gradient(180deg, transparent 35%, rgb(7 20 46 / 30%) 56%, rgb(7 20 46 / 94%) 100%);
+        }
+
+        .hero__content {
+          top: auto;
+          right: 22px;
+          bottom: 5.2%;
+          left: 22px;
+          width: auto;
+          max-width: 520px;
+          margin-inline: auto;
+        }
+
+        .hero h1 {
+          max-width: 440px;
+          margin-bottom: 12px;
+          font-size: clamp(39px, 10vw, 52px);
+          line-height: 0.98;
+        }
+
+        .hero__lead {
+          max-width: 470px;
+          margin-bottom: 15px;
+          font-size: 13px;
+          line-height: 1.4;
+        }
+
+        .hero__actions {
+          gap: 9px;
+          align-items: stretch;
+        }
+
+        .hero__actions .button {
+          width: 100%;
+          min-width: 0;
+          min-height: 43px;
+          padding: 10px 14px;
+          font-size: 15px;
+        }
+
+        .intro {
+          padding: 30px 0 24px;
+        }
+
+        .intro__layout {
+          grid-template-columns: 1fr;
+          grid-template-areas:
+            "gallery"
+            "copy";
+          gap: 24px;
+        }
+
+        .photo-collage {
+          grid-template-rows: minmax(120px, 1.2fr) minmax(95px, 1fr);
+          gap: 7px;
+        }
+
+        .photo-collage img {
+          border-width: 1.5px;
+          border-radius: 11px;
+        }
+
+        .intro__copy {
+          text-align: center;
+        }
+
+        .intro__copy h2 {
+          margin: 0 auto 11px;
+          font-size: clamp(34px, 8.8vw, 43px);
+          line-height: 0.98;
+        }
+
+        .intro__copy p {
+          margin-bottom: 9px;
+          font-size: 12px;
+          line-height: 1.48;
+          text-align: left;
+        }
+
+        .offers {
+          padding: 23px 0 46px;
+        }
+
+        .offers__grid {
+          grid-template-columns: 1fr;
+          gap: 43px;
+        }
+
+        .offer__eyebrow {
+          margin-bottom: 7px;
+          font-size: 9px;
+          letter-spacing: 0.31em;
+        }
+
+        .offer h2 {
+          min-height: 0;
+          margin-bottom: 9px;
+          font-size: clamp(34px, 8.6vw, 42px);
+          line-height: 0.98;
+        }
+
+        .offer__description {
+          min-height: 0;
+          margin-bottom: 12px;
+          font-size: 11px;
+          line-height: 1.45;
+        }
+
+        .check-list {
+          gap: 6px;
+          margin-bottom: 17px;
+        }
+
+        .check-list li {
+          min-height: 34px;
+          gap: 9px;
+          padding: 6px 10px;
+          border-radius: 9px;
+          font-size: 10px;
+        }
+
+        .check-list li::before {
+          width: 10px;
+          height: 10px;
+          flex-basis: 10px;
+        }
+
+        .offer__button {
+          min-height: 46px;
+          font-size: 13px;
+        }
+
+        .process {
+          padding: 16px 0 45px;
+        }
+
+        .process__title {
+          max-width: 420px;
+          margin-bottom: 24px;
+          font-size: clamp(34px, 9vw, 42px);
+          line-height: 0.98;
+        }
+
+        .steps {
+          gap: 10px;
+        }
+
+        .step {
+          min-height: 93px;
+          grid-template-columns: 54px 1fr;
+          gap: 9px;
+          padding: 9px 10px;
+          border-width: 1.5px;
+          border-radius: 19px;
+        }
+
+        .step__number {
+          width: 45px;
+          height: 45px;
+          font-size: 25px;
+        }
+
+        .step h3 {
+          margin-bottom: 4px;
+          font-size: clamp(19px, 5vw, 24px);
+          line-height: 1.02;
+        }
+
+        .step p {
+          font-size: 9px;
+          line-height: 1.32;
+        }
+
+        .about {
+          min-height: 660px;
+        }
+
+        .about__image img {
+          object-position: center top;
+        }
+
+        .about::after {
+          background: linear-gradient(180deg, transparent 17%, rgb(11 30 67 / 18%) 48%, rgb(11 30 67 / 96%) 100%);
+        }
+
+        .about__copy {
+          top: auto;
+          right: 25px;
+          bottom: 28px;
+          left: 25px;
+          width: auto;
+          max-width: 520px;
+          margin-inline: auto;
+          transform: none;
+          text-align: center;
+        }
+
+        .about h2 {
+          margin-bottom: 10px;
+          font-size: 43px;
+        }
+
+        .about p {
+          margin-bottom: 8px;
+          font-size: 11px;
+          line-height: 1.4;
+          text-align: left;
+        }
+
+        .about__button {
+          min-height: 43px;
+          margin-top: 10px;
+          font-size: 14px;
+        }
+
+        .blog {
+          padding: 47px 0 52px;
+        }
+
+        .blog__heading {
+          margin-bottom: 25px;
+        }
+
+        .blog__heading .eyebrow {
+          margin-bottom: 10px;
+          font-size: 8px;
+        }
+
+        .blog__heading h2 {
+          font-size: clamp(32px, 8.5vw, 41px);
+          line-height: 0.98;
+        }
+
+        .blog__grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .article-card {
+          border-width: 1.5px;
+          border-radius: 23px;
+        }
+
+        .article-card__summary {
+          min-height: 0;
+          padding: 23px 21px 19px;
+        }
+
+        .article-card__summary h3 {
+          margin-bottom: 12px;
+          font-size: 25px;
+          line-height: 1.04;
+        }
+
+        .article-card__summary p {
+          margin-bottom: 17px;
+          font-size: 11px;
+          line-height: 1.45;
+        }
+
+        .article-card__button {
+          min-height: 38px;
+          padding: 9px 19px;
+          font-size: 13px;
+        }
+
+        .article-card__body {
+          padding: 0 21px 20px;
+          font-size: 11px;
+        }
+
+        .contact {
+          min-height: 0;
+          height: 220vw;
+          max-height: 900px;
+        }
+
+        .contact__image img {
+          object-position: center;
+        }
+
+        .contact__copy {
+          top: 27%;
+          right: 25px;
+          left: 25px;
+          width: auto;
+          max-width: 500px;
+          margin-inline: auto;
+          transform: none;
+          text-align: center;
+        }
+
+        .contact h2 {
+          margin-bottom: 12px;
+          font-size: clamp(32px, 8.6vw, 41px);
+          line-height: 0.98;
+        }
+
+        .contact p {
+          margin-bottom: 14px;
+          font-size: 10px;
+          line-height: 1.4;
+        }
+
+        .contact__actions {
+          justify-items: center;
+          gap: 8px;
+        }
+
+        .contact__actions .button {
+          min-height: 40px;
+          font-size: 13px;
+        }
+
+        .faq {
+          padding: 49px 0 52px;
+        }
+
+        .faq__heading {
+          margin-bottom: 23px;
+        }
+
+        .faq__heading h2 {
+          margin-bottom: 9px;
+          font-size: clamp(35px, 9vw, 43px);
+        }
+
+        .faq__heading p {
+          font-size: 12px;
+        }
+
+        .faq__list {
+          gap: 9px;
+        }
+
+        .faq-item {
+          border-radius: 15px;
+        }
+
+        .faq-item summary {
+          min-height: 62px;
+          gap: 12px;
+          padding: 14px 14px 14px 16px;
+          font-size: 19px;
+          line-height: 1.08;
+        }
+
+        .faq-item__arrow {
+          width: 32px;
+          height: 32px;
+          flex-basis: 32px;
+        }
+
+        .faq-item__arrow::before {
+          width: 9px;
+          height: 9px;
+          border-width: 2.5px;
+        }
+
+        .faq-item__answer {
+          padding: 0 17px 18px;
+          font-size: 11px;
+          line-height: 1.5;
+        }
+
+        .footer {
+          padding: 31px 0 29px;
+        }
+
+        .footer__inner {
+          display: block;
+        }
+
+        .footer__brand {
+          margin-bottom: 15px;
+          font-size: 13px;
+          line-height: 1.28;
+        }
+
+        .footer__links {
+          justify-content: flex-start;
+          gap: 6px 8px;
+          margin: 0;
+        }
+
+        .footer__links a {
+          font-size: 11px;
+        }
+      }
+
+      @media (max-width: 360px) {
+        .section-shell {
+          width: calc(100% - 30px);
+        }
+
+        .hero__content {
+          right: 16px;
+          left: 16px;
+        }
+
+        .hero h1 {
+          font-size: 36px;
+        }
+
+        .hero__lead {
+          font-size: 12px;
+        }
+
+        .step {
+          grid-template-columns: 44px 1fr;
+          gap: 7px;
+          padding-inline: 8px;
+        }
+
+        .step__number {
+          width: 39px;
+          height: 39px;
+          font-size: 22px;
+        }
+
+        .step h3 {
+          font-size: 18px;
+        }
+
+        .faq-item summary {
+          font-size: 17px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main id="inicio">
+      <section class="hero" aria-labelledby="hero-title">
+        <picture class="hero__image">
+          <source media="(max-width: 760px)" srcset="assets/hero-mobile.png" />
+          <img src="assets/hero-desktop.png" alt="Elton Tarnhovi em um ambiente de desenvolvimento de equipes" fetchpriority="high" />
+        </picture>
+        <div class="hero__content">
+          <h1 id="hero-title">Você não precisa se reinventar para crescer. Precisa entender como funciona.</h1>
+          <p class="hero__lead">Autoconhecimento para reconhecer seus talentos, compreender seus padrões de comportamento e transformar essa clareza em escolhas mais conscientes — na vida e no trabalho.</p>
+          <div class="hero__actions">
+            <a class="button" href="#individual">Quero desenvolver meu potencial</a>
+            <a class="button button--blue" href="#empresas">Quero desenvolver minha equipe</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="intro section-shell" aria-labelledby="intro-title">
+        <div class="intro__layout">
+          <div class="photo-collage" aria-label="Elton em palestras e atividades com equipes">
+            <img src="assets/team-session.png" alt="Elton ao lado de um grupo de participantes" loading="lazy" />
+            <img src="assets/event-blue.png" alt="Elton falando em um evento" loading="lazy" />
+            <img src="assets/event-stage.png" alt="Elton conduzindo uma apresentação no palco" loading="lazy" />
+          </div>
+          <div class="intro__copy">
+            <h2 id="intro-title">Autoconhecimento <span>aplicado à vida real</span></h2>
+            <p>Entender como você pensa, age e toma decisões pode abrir novas possibilidades para sua vida profissional e pessoal.</p>
+            <p>O autoconhecimento ajuda a reconhecer preferências comportamentais, talentos e motivações. Com essa clareza, fica mais fácil refletir sobre escolhas, relações e caminhos de desenvolvimento.</p>
+            <p>O objetivo é levar a reflexão para a prática: compreender o que faz sentido para você e definir próximos passos possíveis.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="offers section-shell" aria-label="Formas de desenvolvimento">
+        <div class="offers__grid">
+          <article class="offer" id="individual">
+            <span class="offer__eyebrow">Para você e sua carreira</span>
+            <h2>Desenvolva seu potencial com mais clareza</h2>
+            <p class="offer__description">Cada pessoa tem um jeito próprio de agir, aprender, se comunicar e lidar com desafios. Compreender essas características pode ajudar a enxergar melhor seus recursos e a pensar com mais consciência sobre seus objetivos.</p>
+            <ul class="check-list">
+              <li>reconhecer talentos e pontos de atenção;</li>
+              <li>compreender preferências comportamentais e motivações;</li>
+              <li>refletir sobre escolhas e objetivos profissionais;</li>
+              <li>desenvolver mais consciência nas relações de trabalho;</li>
+              <li>transformar aprendizados em ações para o seu dia a dia.</li>
+            </ul>
+            <a class="button offer__button" href="#contato">Quero conversar sobre meu desenvolvimento</a>
+          </article>
+
+          <article class="offer offer--teams" id="empresas">
+            <span class="offer__eyebrow">Para empresas e equipes</span>
+            <h2>Desenvolvimento começa com uma compreensão melhor das pessoas</h2>
+            <p class="offer__description">Equipes são formadas por pessoas com diferentes talentos, motivações e formas de trabalhar. Quando essas diferenças são compreendidas, líderes e equipes podem conversar melhor sobre colaboração, comunicação e desenvolvimento.</p>
+            <ul class="check-list">
+              <li>autoconhecimento e comportamento no trabalho;</li>
+              <li>talentos, competências e motivações;</li>
+              <li>comunicação e relações profissionais;</li>
+              <li>desenvolvimento de liderança;</li>
+              <li>colaboração entre pessoas com perfis diferentes.</li>
+            </ul>
+            <a class="button button--blue offer__button" href="#contato">Quero conversar sobre minha equipe</a>
+          </article>
+        </div>
+      </section>
+
+      <section class="process section-shell" aria-labelledby="process-title">
+        <h2 class="process__title" id="process-title">Como levar o autoconhecimento para a prática?</h2>
+        <div class="steps">
+          <article class="step">
+            <span class="step__number" aria-hidden="true">1</span>
+            <div>
+              <h3>Compreender o contexto</h3>
+              <p>O ponto de partida é entender o que você, sua equipe ou sua organização busca desenvolver.</p>
+            </div>
+          </article>
+          <article class="step">
+            <span class="step__number" aria-hidden="true">2</span>
+            <div>
+              <h3>Reconhecer padrões e recursos</h3>
+              <p>A reflexão sobre comportamentos, talentos e motivações ajuda a ampliar a compreensão sobre como cada pessoa e equipe se relaciona.</p>
+            </div>
+          </article>
+          <article class="step">
+            <span class="step__number" aria-hidden="true">3</span>
+            <div>
+              <h3>Transformar clareza em próximos passos</h3>
+              <p>O aprendizado ganha sentido quando pode ser aplicado em escolhas, conversas e objetivos de desenvolvimento.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="about" id="sobre" aria-labelledby="about-title">
+        <picture class="about__image">
+          <source media="(max-width: 760px)" srcset="assets/about-mobile.png" />
+          <img src="assets/about-desktop.png" alt="Elton Tarnhovi em seu escritório" loading="lazy" />
+        </picture>
+        <div class="about__copy">
+          <h2 id="about-title">Sobre Elton</h2>
+          <p>Sou Elton Tarnhovi, Master Trainer da Innermetrix. Trabalho com desenvolvimento humano e profissional, ajudando pessoas, lideranças e equipes a ampliar o autoconhecimento e aplicá-lo no cotidiano.</p>
+          <p>Minha atuação conecta temas como comportamento, talentos, motivações e desenvolvimento. Acredito que compreender melhor como funcionamos pode nos ajudar a fazer escolhas mais conscientes e construir relações de trabalho mais produtivas.</p>
+          <a class="button about__button" href="#blog">Conheça meu trabalho</a>
+        </div>
+      </section>
+
+      <section class="blog" id="blog" aria-labelledby="blog-title">
+        <div class="section-shell">
+          <div class="blog__heading">
+            <span class="eyebrow">Blog</span>
+            <h2 id="blog-title">Ideias para compreender melhor você e as pessoas com quem trabalha</h2>
+          </div>
+          <div class="blog__grid">
+            <details class="article-card">
+              <summary class="article-card__summary">
+                <h3>Como o autoconhecimento pode ajudar nas decisões de carreira?</h3>
+                <p>Entenda como reconhecer seus interesses, talentos e motivações pode apoiar suas escolhas profissionais.</p>
+                <span class="button article-card__button">Leia o Artigo</span>
+              </summary>
+              <div class="article-card__body">
+                <p>Decisões profissionais ficam mais conscientes quando você consegue observar o que valoriza, quais atividades despertam seu interesse e em quais situações seus talentos aparecem com mais naturalidade.</p>
+                <p>Esse olhar não entrega uma resposta pronta. Ele ajuda a organizar perguntas, reconhecer pontos de atenção e comparar caminhos de acordo com o momento que você está vivendo.</p>
+              </div>
+            </details>
+            <details class="article-card">
+              <summary class="article-card__summary">
+                <h3>O que o perfil comportamental revela sobre seu jeito de trabalhar?</h3>
+                <p>Uma introdução às preferências comportamentais e ao papel que elas podem ter na vida profissional.</p>
+                <span class="button article-card__button">Leia o Artigo</span>
+              </summary>
+              <div class="article-card__body">
+                <p>Um perfil comportamental pode oferecer uma linguagem para refletir sobre preferências: como você tende a se comunicar, tomar decisões e responder a diferentes situações no trabalho.</p>
+                <p>Usado como ponto de partida para uma conversa, esse tipo de reflexão pode ampliar a compreensão sobre si e sobre as pessoas com quem você trabalha.</p>
+              </div>
+            </details>
+            <details class="article-card">
+              <summary class="article-card__summary">
+                <h3>Perfil comportamental: como usar uma avaliação sem se limitar a rótulos</h3>
+                <p>Veja como interpretar informações sobre comportamento considerando o contexto e a individualidade de cada pessoa.</p>
+                <span class="button article-card__button">Leia o Artigo</span>
+              </summary>
+              <div class="article-card__body">
+                <p>Uma avaliação é mais útil quando abre possibilidades de reflexão. Ela descreve tendências e preferências em determinado contexto; não resume todas as capacidades, experiências ou escolhas de uma pessoa.</p>
+                <p>Conectar os resultados à história, aos objetivos e ao ambiente de cada pessoa ajuda a transformar informações em conversas e próximos passos mais cuidadosos.</p>
+              </div>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="contact" id="contato" aria-labelledby="contact-title">
+        <picture class="contact__image">
+          <source media="(max-width: 760px)" srcset="assets/contact-mobile.png" />
+          <img src="assets/contact-desktop.png" alt="Computador com o canal de Elton no YouTube e celular com uma conversa no WhatsApp" loading="lazy" />
+        </picture>
+        <div class="contact__copy">
+          <h2 id="contact-title">O próximo passo começa com uma conversa e com a descoberta do meu método</h2>
+          <p>Entenda como reconhecer seus interesses, talentos e motivações pode apoiar suas escolhas profissionais.</p>
+          <div class="contact__actions">
+            <a class="button" href="#sobre">Falar com Elton</a>
+            <a class="button button--blue" href="#blog">Assistir aos meus conteúdos</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="faq" aria-labelledby="faq-title">
+        <div class="section-shell">
+          <div class="faq__heading">
+            <span class="eyebrow">Dúvidas comuns</span>
+            <h2 id="faq-title">Perguntas frequentes</h2>
+            <p>Entenda melhor como o autoconhecimento pode apoiar pessoas, lideranças e equipes.</p>
+          </div>
+          <div class="faq__list">
+            <details class="faq-item">
+              <summary>O que é autoconhecimento aplicado ao trabalho?<span class="faq-item__arrow" aria-hidden="true"></span></summary>
+              <p class="faq-item__answer">É compreender melhor seus talentos, preferências, motivações e padrões de comportamento para refletir sobre escolhas, relações profissionais e caminhos de desenvolvimento.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Como funciona o desenvolvimento individual?<span class="faq-item__arrow" aria-hidden="true"></span></summary>
+              <p class="faq-item__answer">O trabalho começa entendendo seu contexto e o que você deseja desenvolver. A partir daí, a reflexão sobre comportamentos e recursos pode ajudar a definir próximos passos ligados à sua realidade.</p>
+            </details>
+            <details class="faq-item">
+              <summary>O trabalho também pode ser feito com equipes e empresas?<span class="faq-item__arrow" aria-hidden="true"></span></summary>
+              <p class="faq-item__answer">Sim. O autoconhecimento também pode apoiar conversas sobre comunicação, colaboração, liderança e desenvolvimento entre pessoas com diferentes talentos e formas de trabalhar.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Uma avaliação de perfil define quem eu sou?<span class="faq-item__arrow" aria-hidden="true"></span></summary>
+              <p class="faq-item__answer">Não. Uma avaliação oferece informações sobre tendências e preferências. Ela serve como ponto de partida para reflexão e conversa, considerando sempre o contexto e a individualidade de cada pessoa.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Como posso começar uma conversa com Elton?<span class="faq-item__arrow" aria-hidden="true"></span></summary>
+              <p class="faq-item__answer">O primeiro passo é compartilhar o que você ou sua equipe busca desenvolver. Essa conversa ajuda a entender o contexto e pensar em possibilidades de trabalho adequadas a cada objetivo.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="footer__inner section-shell">
+        <p class="footer__brand"><strong>Elton Tarnhovi</strong>Desenvolvimento pessoal e profissional<br />Master Trainer Innermetrix</p>
+        <nav aria-label="Navegação do rodapé">
+          <ul class="footer__links">
+            <li><a href="#inicio">Início</a></li>
+            <li><a href="#individual">Desenvolvimento individual</a></li>
+            <li><a href="#empresas">Empresas e equipes</a></li>
+            <li><a href="#blog">Conteúdos</a></li>
+            <li><a href="#sobre">Sobre Elton</a></li>
+          </ul>
+        </nav>
+      </div>
+    </footer>
+  </body>
+</html>
