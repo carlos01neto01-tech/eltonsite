@@ -85,7 +85,7 @@
         display: block;
         margin-bottom: 11px;
         color: var(--orange);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
         letter-spacing: 0.34em;
         line-height: 1.4;
@@ -94,17 +94,17 @@
 
       .button {
         display: inline-flex;
-        min-height: 48px;
+        min-height: 54px;
         align-items: center;
         justify-content: center;
-        padding: 12px 24px;
+        padding: 14px 28px;
         border: 1px solid transparent;
         border-radius: 999px;
         background: linear-gradient(110deg, #ff4a05, #c93405);
         box-shadow: 0 5px 16px rgb(255 68 13 / 45%);
         color: #fff;
         font-family: var(--serif);
-        font-size: 17px;
+        font-size: 19px;
         line-height: 1.15;
         text-align: center;
         text-decoration: none;
@@ -171,17 +171,17 @@
       .hero h1 {
         max-width: 620px;
         margin-bottom: 15px;
-        font-size: clamp(42px, 4vw, 56px);
+        font-size: clamp(44px, 4.2vw, 60px);
         line-height: 0.99;
         letter-spacing: -0.025em;
       }
 
       .hero__lead {
-        max-width: 500px;
-        margin-bottom: 24px;
+        max-width: 530px;
+        margin-bottom: 26px;
         color: rgb(255 255 255 / 89%);
-        font-size: clamp(14px, 1.12vw, 17px);
-        line-height: 1.5;
+        font-size: clamp(16px, 1.25vw, 18px);
+        line-height: 1.55;
       }
 
       .hero__actions {
@@ -198,6 +198,67 @@
 
       .hero__actions .button--blue {
         border-color: rgb(255 255 255 / 16%);
+      }
+
+      .keyword-carousel {
+        overflow: hidden;
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .keyword-carousel__viewport {
+        overflow: hidden;
+      }
+
+      .keyword-carousel__track {
+        display: flex;
+        width: max-content;
+        animation: keyword-loop 42s linear infinite;
+        will-change: transform;
+      }
+
+      .keyword-carousel__group {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        gap: clamp(24px, 3vw, 44px);
+        margin: 0;
+        padding: 19px 22px;
+        list-style: none;
+      }
+
+      .keyword-carousel__item {
+        display: inline-flex;
+        align-items: center;
+        gap: clamp(24px, 3vw, 44px);
+        color: #fff;
+        font-family: var(--serif);
+        font-size: clamp(18px, 1.8vw, 24px);
+        line-height: 1.1;
+        white-space: nowrap;
+      }
+
+      .keyword-carousel__item::after {
+        width: 10px;
+        height: 10px;
+        flex: 0 0 10px;
+        border-radius: 50%;
+        background: var(--orange);
+        box-shadow: 0 0 10px rgb(244 71 11 / 52%);
+        content: "";
+      }
+
+      .keyword-carousel:hover .keyword-carousel__track {
+        animation-play-state: paused;
+      }
+
+      @keyframes keyword-loop {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-50%);
+        }
       }
 
       .intro {
@@ -234,8 +295,8 @@
         max-width: 565px;
         margin-bottom: 11px;
         color: var(--muted);
-        font-size: 14px;
-        line-height: 1.55;
+        font-size: 16px;
+        line-height: 1.6;
       }
 
       .intro__copy p:last-child {
@@ -287,10 +348,15 @@
         display: block;
         margin-bottom: 8px;
         color: var(--orange);
-        font-size: 11px;
+        font-size: 12px;
         font-weight: 600;
         letter-spacing: 0.33em;
         text-transform: uppercase;
+      }
+
+      .offer {
+        display: flex;
+        flex-direction: column;
       }
 
       .offer--teams .offer__eyebrow {
@@ -300,23 +366,24 @@
       .offer h2 {
         max-width: 550px;
         min-height: 4.05em;
-        margin-bottom: 12px;
+        margin-bottom: 14px;
         color: var(--navy);
-        font-size: clamp(34px, 3.15vw, 42px);
+        font-size: clamp(36px, 3.35vw, 46px);
         line-height: 0.99;
       }
 
       .offer__description {
-        min-height: 78px;
-        margin-bottom: 14px;
+        min-height: 100px;
+        margin-bottom: 18px;
         color: var(--muted);
-        font-size: 13px;
-        line-height: 1.5;
+        font-size: 16px;
+        line-height: 1.6;
       }
 
       .check-list {
         display: grid;
-        gap: 7px;
+        grid-auto-rows: 1fr;
+        gap: 8px;
         margin: 0 0 24px;
         padding: 0;
         list-style: none;
@@ -324,14 +391,14 @@
 
       .check-list li {
         display: flex;
-        min-height: 37px;
+        min-height: 46px;
         align-items: center;
-        gap: 12px;
-        padding: 7px 12px;
+        gap: 13px;
+        padding: 8px 14px;
         border-radius: 10px;
         background: #dedfe1;
         color: #48546a;
-        font-size: 12px;
+        font-size: 15px;
         line-height: 1.35;
       }
 
@@ -352,9 +419,10 @@
 
       .offer__button {
         width: 100%;
-        min-height: 52px;
+        min-height: 58px;
         padding-inline: 16px;
-        font-size: 15px;
+        font-size: 17px;
+        margin-top: auto;
       }
 
       .process {
@@ -411,7 +479,7 @@
         max-width: 790px;
         margin: 0;
         color: #303746;
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.45;
       }
 
@@ -464,7 +532,7 @@
       .about p {
         margin-bottom: 12px;
         color: rgb(255 255 255 / 90%);
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.55;
       }
 
@@ -534,10 +602,10 @@
       }
 
       .article-card__summary p {
-        min-height: 4.5em;
+        min-height: 5em;
         margin-bottom: 23px;
         color: #4e5767;
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.5;
       }
 
@@ -560,7 +628,7 @@
         padding: 0 25px 26px;
         border-top: 1px solid rgb(25 39 70 / 16%);
         color: #39465d;
-        font-size: 13px;
+        font-size: 15px;
         line-height: 1.6;
       }
 
@@ -608,8 +676,8 @@
       .contact p {
         margin-bottom: 21px;
         color: rgb(255 255 255 / 88%);
-        font-size: 14px;
-        line-height: 1.5;
+        font-size: 16px;
+        line-height: 1.6;
       }
 
       .contact__actions {
@@ -620,8 +688,8 @@
 
       .contact__actions .button {
         width: min(100%, 380px);
-        min-height: 47px;
-        font-size: 16px;
+        min-height: 54px;
+        font-size: 18px;
       }
 
       .faq {
@@ -645,7 +713,7 @@
       .faq__heading p {
         margin-bottom: 0;
         color: var(--muted);
-        font-size: 15px;
+        font-size: 16px;
         line-height: 1.5;
       }
 
@@ -724,7 +792,7 @@
         margin: 0;
         padding: 0 80px 22px 24px;
         color: #566176;
-        font-size: 14px;
+        font-size: 16px;
         line-height: 1.6;
         background: #fff;
         border-radius: 0 0 16px 16px;
@@ -808,15 +876,15 @@
         .hero h1 {
           max-width: 440px;
           margin-bottom: 12px;
-          font-size: clamp(39px, 10vw, 52px);
+          font-size: clamp(41px, 10.2vw, 54px);
           line-height: 0.98;
         }
 
         .hero__lead {
           max-width: 470px;
           margin-bottom: 15px;
-          font-size: 13px;
-          line-height: 1.4;
+          font-size: 14px;
+          line-height: 1.5;
         }
 
         .hero__actions {
@@ -827,9 +895,9 @@
         .hero__actions .button {
           width: 100%;
           min-width: 0;
-          min-height: 43px;
-          padding: 10px 14px;
-          font-size: 15px;
+          min-height: 50px;
+          padding: 11px 16px;
+          font-size: 16px;
         }
 
         .intro {
@@ -866,8 +934,8 @@
 
         .intro__copy p {
           margin-bottom: 9px;
-          font-size: 12px;
-          line-height: 1.48;
+          font-size: 14px;
+          line-height: 1.55;
           text-align: left;
         }
 
@@ -882,46 +950,47 @@
 
         .offer__eyebrow {
           margin-bottom: 7px;
-          font-size: 9px;
+          font-size: 10px;
           letter-spacing: 0.31em;
         }
 
         .offer h2 {
           min-height: 0;
           margin-bottom: 9px;
-          font-size: clamp(34px, 8.6vw, 42px);
+          font-size: clamp(36px, 9vw, 45px);
           line-height: 0.98;
         }
 
         .offer__description {
           min-height: 0;
-          margin-bottom: 12px;
-          font-size: 11px;
-          line-height: 1.45;
+          margin-bottom: 15px;
+          font-size: 14px;
+          line-height: 1.55;
         }
 
         .check-list {
-          gap: 6px;
-          margin-bottom: 17px;
+          gap: 7px;
+          margin-bottom: 19px;
         }
 
         .check-list li {
-          min-height: 34px;
-          gap: 9px;
-          padding: 6px 10px;
+          min-height: 42px;
+          gap: 10px;
+          padding: 8px 12px;
           border-radius: 9px;
-          font-size: 10px;
+          font-size: 12px;
+          line-height: 1.4;
         }
 
         .check-list li::before {
-          width: 10px;
-          height: 10px;
-          flex-basis: 10px;
+          width: 11px;
+          height: 11px;
+          flex-basis: 11px;
         }
 
         .offer__button {
-          min-height: 46px;
-          font-size: 13px;
+          min-height: 52px;
+          font-size: 15px;
         }
 
         .process {
@@ -940,7 +1009,7 @@
         }
 
         .step {
-          min-height: 93px;
+          min-height: 106px;
           grid-template-columns: 54px 1fr;
           gap: 9px;
           padding: 9px 10px;
@@ -956,13 +1025,13 @@
 
         .step h3 {
           margin-bottom: 4px;
-          font-size: clamp(19px, 5vw, 24px);
+          font-size: clamp(21px, 5.4vw, 26px);
           line-height: 1.02;
         }
 
         .step p {
-          font-size: 9px;
-          line-height: 1.32;
+          font-size: 12px;
+          line-height: 1.42;
         }
 
         .about {
@@ -996,15 +1065,15 @@
 
         .about p {
           margin-bottom: 8px;
-          font-size: 11px;
-          line-height: 1.4;
+          font-size: 13px;
+          line-height: 1.5;
           text-align: left;
         }
 
         .about__button {
-          min-height: 43px;
+          min-height: 50px;
           margin-top: 10px;
-          font-size: 14px;
+          font-size: 16px;
         }
 
         .blog {
@@ -1017,7 +1086,7 @@
 
         .blog__heading .eyebrow {
           margin-bottom: 10px;
-          font-size: 8px;
+          font-size: 10px;
         }
 
         .blog__heading h2 {
@@ -1042,25 +1111,25 @@
 
         .article-card__summary h3 {
           margin-bottom: 12px;
-          font-size: 25px;
+          font-size: 27px;
           line-height: 1.04;
         }
 
         .article-card__summary p {
           margin-bottom: 17px;
-          font-size: 11px;
-          line-height: 1.45;
+          font-size: 13px;
+          line-height: 1.55;
         }
 
         .article-card__button {
-          min-height: 38px;
-          padding: 9px 19px;
-          font-size: 13px;
+          min-height: 46px;
+          padding: 10px 21px;
+          font-size: 15px;
         }
 
         .article-card__body {
           padding: 0 21px 20px;
-          font-size: 11px;
+          font-size: 13px;
         }
 
         .contact {
@@ -1074,7 +1143,7 @@
         }
 
         .contact__copy {
-          top: 27%;
+          top: 8%;
           right: 25px;
           left: 25px;
           width: auto;
@@ -1086,14 +1155,14 @@
 
         .contact h2 {
           margin-bottom: 12px;
-          font-size: clamp(32px, 8.6vw, 41px);
+          font-size: clamp(35px, 9vw, 44px);
           line-height: 0.98;
         }
 
         .contact p {
           margin-bottom: 14px;
-          font-size: 10px;
-          line-height: 1.4;
+          font-size: 13px;
+          line-height: 1.5;
         }
 
         .contact__actions {
@@ -1102,8 +1171,8 @@
         }
 
         .contact__actions .button {
-          min-height: 40px;
-          font-size: 13px;
+          min-height: 48px;
+          font-size: 15px;
         }
 
         .faq {
@@ -1120,7 +1189,8 @@
         }
 
         .faq__heading p {
-          font-size: 12px;
+          font-size: 14px;
+          line-height: 1.5;
         }
 
         .faq__list {
@@ -1132,11 +1202,11 @@
         }
 
         .faq-item summary {
-          min-height: 62px;
+          min-height: 68px;
           gap: 12px;
           padding: 14px 14px 14px 16px;
-          font-size: 19px;
-          line-height: 1.08;
+          font-size: 20px;
+          line-height: 1.12;
         }
 
         .faq-item__arrow {
@@ -1153,7 +1223,7 @@
 
         .faq-item__answer {
           padding: 0 17px 18px;
-          font-size: 11px;
+          font-size: 13px;
           line-height: 1.5;
         }
 
@@ -1167,7 +1237,7 @@
 
         .footer__brand {
           margin-bottom: 15px;
-          font-size: 13px;
+          font-size: 15px;
           line-height: 1.28;
         }
 
@@ -1178,7 +1248,7 @@
         }
 
         .footer__links a {
-          font-size: 11px;
+          font-size: 13px;
         }
       }
 
@@ -1193,11 +1263,11 @@
         }
 
         .hero h1 {
-          font-size: 36px;
+          font-size: 39px;
         }
 
         .hero__lead {
-          font-size: 12px;
+          font-size: 13px;
         }
 
         .step {
@@ -1213,11 +1283,11 @@
         }
 
         .step h3 {
-          font-size: 18px;
+          font-size: 20px;
         }
 
         .faq-item summary {
-          font-size: 17px;
+          font-size: 18px;
         }
       }
 
@@ -1231,6 +1301,27 @@
         *::after {
           transition-duration: 0.01ms !important;
           animation-duration: 0.01ms !important;
+        }
+
+        .keyword-carousel__track {
+          width: 100%;
+          animation: none !important;
+          transform: none;
+        }
+
+        .keyword-carousel__group--primary {
+          width: 100%;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 12px 20px;
+        }
+
+        .keyword-carousel__group--copy {
+          display: none;
+        }
+
+        .keyword-carousel__item {
+          font-size: 16px;
         }
       }
     </style>
@@ -1248,6 +1339,35 @@
           <div class="hero__actions">
             <a class="button" href="#individual">Quero desenvolver meu potencial</a>
             <a class="button button--blue" href="#empresas">Quero desenvolver minha equipe</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="keyword-carousel" aria-label="Temas de desenvolvimento">
+        <div class="keyword-carousel__viewport">
+          <div class="keyword-carousel__track">
+            <ul class="keyword-carousel__group keyword-carousel__group--primary">
+              <li class="keyword-carousel__item">Autoconhecimento</li>
+              <li class="keyword-carousel__item">Comportamento</li>
+              <li class="keyword-carousel__item">Talentos</li>
+              <li class="keyword-carousel__item">Motivações</li>
+              <li class="keyword-carousel__item">Carreira</li>
+              <li class="keyword-carousel__item">Liderança</li>
+              <li class="keyword-carousel__item">Desenvolvimento de equipes</li>
+              <li class="keyword-carousel__item">Comunicação</li>
+              <li class="keyword-carousel__item">Colaboração</li>
+            </ul>
+            <ul class="keyword-carousel__group keyword-carousel__group--copy" aria-hidden="true">
+              <li class="keyword-carousel__item">Autoconhecimento</li>
+              <li class="keyword-carousel__item">Comportamento</li>
+              <li class="keyword-carousel__item">Talentos</li>
+              <li class="keyword-carousel__item">Motivações</li>
+              <li class="keyword-carousel__item">Carreira</li>
+              <li class="keyword-carousel__item">Liderança</li>
+              <li class="keyword-carousel__item">Desenvolvimento de equipes</li>
+              <li class="keyword-carousel__item">Comunicação</li>
+              <li class="keyword-carousel__item">Colaboração</li>
+            </ul>
           </div>
         </div>
       </section>
