@@ -11,7 +11,15 @@
     <title>Elton Tarnhovi | Autoconhecimento e desenvolvimento</title>
     <script>
       try {
-        document.documentElement.classList.add("has-splash");
+        var d = document.documentElement;
+        var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        var seen = sessionStorage.getItem("splash-seen");
+        if (!reduce && (!seen || location.search.indexOf("splash") > -1)) {
+          d.classList.add("has-splash");
+          setTimeout(function () {
+            d.classList.remove("has-splash");
+          }, 6000);
+        }
       } catch (error) {}
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -156,26 +164,37 @@
         position: fixed;
         z-index: 9999;
         inset: 0;
-        display: grid;
+        display: block;
         overflow: hidden;
-        place-items: center;
+        cursor: pointer;
+      }
+
+      .splash-screen__panel {
+        position: absolute;
+        inset: 0;
+        will-change: transform;
+      }
+
+      .splash-screen__panel--navy {
         background: var(--navy-deep);
-        opacity: 1;
-        pointer-events: auto;
-        will-change: opacity, background-color;
+      }
+
+      .splash-screen__panel--orange {
+        display: grid;
+        place-items: center;
+        background: var(--orange);
       }
 
       .splash-screen__logo {
-        position: absolute;
-        top: 50%;
-        left: 50%;
         width: min(70vw, 460px);
         max-height: min(38vh, 220px);
         object-fit: contain;
         opacity: 0;
-        transform: translate(-50%, -50%) scale(0.82);
-        transform-origin: center;
         will-change: opacity, transform;
+      }
+
+      html.has-splash .site-logo {
+        opacity: 0;
       }
 
       .site-logo {
@@ -1397,7 +1416,10 @@
   </head>
   <body>
     <div class="splash-screen" aria-hidden="true">
-      <img class="splash-screen__logo" src="assets/LOGO%20.png" alt="" />
+      <div class="splash-screen__panel splash-screen__panel--navy"></div>
+      <div class="splash-screen__panel splash-screen__panel--orange">
+        <img class="splash-screen__logo" src="assets/LOGO%20.png" alt="" />
+      </div>
     </div>
     <main id="inicio">
       <section class="hero" aria-labelledby="hero-title">
@@ -1645,95 +1667,90 @@
       (() => {
         const page = document.documentElement;
         const splash = document.querySelector(".splash-screen");
-        const splashLogo = document.querySelector(".splash-screen__logo");
+        const logo = splash?.querySelector(".splash-screen__logo");
+        const panelOrange = splash?.querySelector(".splash-screen__panel--orange");
+        const panelNavy = splash?.querySelector(".splash-screen__panel--navy");
         const siteLogo = document.querySelector(".site-logo");
-        const siteLogoImage = siteLogo?.querySelector("img");
-        const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        const heroImage = document.querySelector(".hero__image img");
 
-        if (!page.classList.contains("has-splash") || !splash || !splashLogo || !siteLogoImage) {
+        if (!page.classList.contains("has-splash") || !splash || !logo || !panelOrange || !panelNavy || !siteLogo) {
           return;
         }
 
-        const finishSplash = () => {
+        const animations = [];
+        let finished = false;
+
+        const finish = () => {
+          if (finished) return;
+          finished = true;
+          animations.forEach((animation) => animation.cancel());
           splash.remove();
           page.classList.remove("has-splash");
+          try {
+            sessionStorage.setItem("splash-seen", "1");
+          } catch (error) {}
         };
 
-        const animateSplash = () => {
-          const start = splashLogo.getBoundingClientRect();
-          const destination = siteLogoImage.getBoundingClientRect();
+        if (typeof splash.animate !== "function") {
+          finish();
+          return;
+        }
 
-          if (!start.width || !start.height || !destination.width || !destination.height) {
-            finishSplash();
-            return;
-          }
+        const EASE_IN = "cubic-bezier(0.22, 1, 0.36, 1)";
+        const EASE_WIPE = "cubic-bezier(0.76, 0, 0.24, 1)";
 
-          const offsetX = destination.left + destination.width / 2 - window.innerWidth / 2;
-          const offsetY = destination.top + destination.height / 2 - window.innerHeight / 2;
-          const scaleX = destination.width / start.width;
-          const scaleY = destination.height / start.height;
-          const finalTransform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px)) scale(${scaleX}, ${scaleY})`;
-          const centeredTransform = "translate(-50%, -50%) scale(1)";
-          const duration = reduceMotion ? 1000 : 2600;
-
-          const logoAnimation = splashLogo.animate(
-            reduceMotion
-              ? [
-                  { opacity: 0, transform: centeredTransform, offset: 0 },
-                  { opacity: 1, transform: centeredTransform, offset: 0.18 },
-                  { opacity: 1, transform: centeredTransform, offset: 0.65 },
-                  { opacity: 0, transform: centeredTransform, offset: 1 },
-                ]
-              : [
-                  { opacity: 0, transform: "translate(-50%, -50%) scale(0.82)", offset: 0 },
-                  {
-                    opacity: 1,
-                    transform: "translate(-50%, -50%) scale(1.06)",
-                    offset: 0.14,
-                    easing: "cubic-bezier(0.22, 0.8, 0.25, 1)",
-                  },
-                  { opacity: 1, transform: centeredTransform, offset: 0.26 },
-                  { opacity: 1, transform: centeredTransform, offset: 0.43 },
-                  {
-                    opacity: 1,
-                    transform: finalTransform,
-                    offset: 0.94,
-                    easing: "cubic-bezier(0.65, 0, 0.35, 1)",
-                  },
-                  { opacity: 1, transform: finalTransform, offset: 1 },
-                ],
-            { duration, fill: "forwards" }
-          );
-
-          const backgroundAnimation = splash.animate(
-            reduceMotion
-              ? [
-                  { backgroundColor: "#071632", opacity: 1, offset: 0 },
-                  { backgroundColor: "#f4470b", opacity: 1, offset: 0.2 },
-                  { backgroundColor: "#10234a", opacity: 1, offset: 0.65 },
-                  { backgroundColor: "#071632", opacity: 0, offset: 1 },
-                ]
-              : [
-                  { backgroundColor: "#071632", opacity: 1, offset: 0 },
-                  { backgroundColor: "#f4470b", opacity: 1, offset: 0.14 },
-                  { backgroundColor: "#f4470b", opacity: 1, offset: 0.38 },
-                  { backgroundColor: "#10234a", opacity: 1, offset: 0.6 },
-                  { backgroundColor: "#071632", opacity: 1, offset: 0.82 },
-                  { backgroundColor: "#071632", opacity: 0, offset: 1 },
-                ],
-            { duration, easing: "ease-in-out", fill: "forwards" }
-          );
-
-          Promise.all([logoAnimation.finished, backgroundAnimation.finished])
-            .then(finishSplash)
-            .catch(finishSplash);
+        const play = (element, keyframes, options) => {
+          const animation = element.animate(keyframes, { fill: "both", ...options });
+          animations.push(animation);
+          return animation;
         };
 
-        Promise.all([splashLogo.decode?.().catch(() => {}), siteLogoImage.decode?.().catch(() => {})])
-          .then(animateSplash)
-          .catch(finishSplash);
+        const start = () => {
+          // 1) Logo entra sobre o laranja (0 a 450ms) e fica parada até ~1050ms
+          play(
+            logo,
+            [
+              { opacity: 0, transform: "translateY(8px) scale(0.96)" },
+              { opacity: 1, transform: "translateY(0) scale(1)" },
+            ],
+            { duration: 450, easing: EASE_IN }
+          );
 
-        window.setTimeout(finishSplash, 4000);
+          // 2) Cortinas sobem: laranja primeiro (leva a logo junto), azul 100ms depois
+          const wipe = [{ transform: "translateY(0)" }, { transform: "translateY(-100%)" }];
+          const orange = play(panelOrange, wipe, { duration: 800, delay: 1050, easing: EASE_WIPE });
+          const navy = play(panelNavy, wipe, { duration: 800, delay: 1150, easing: EASE_WIPE });
+
+          // 3) Logo do header entra pela esquerda quando o topo da tela é revelado
+          play(
+            siteLogo,
+            [
+              { opacity: 0, transform: "translateX(-28px)" },
+              { opacity: 1, transform: "translateX(0)" },
+            ],
+            { duration: 650, delay: 1700, easing: EASE_IN }
+          );
+
+          Promise.all([orange.finished, navy.finished]).then(finish).catch(finish);
+        };
+
+        // Pular com clique ou tecla
+        splash.addEventListener("click", finish, { once: true });
+        document.addEventListener("keydown", finish, { once: true });
+
+        // Só começa quando logo, fonte e imagem do hero estiverem prontas (limite de 1,5s)
+        Promise.race([
+          Promise.all([
+            document.fonts ? document.fonts.ready : null,
+            logo.decode ? logo.decode().catch(() => {}) : null,
+            heroImage && heroImage.decode ? heroImage.decode().catch(() => {}) : null,
+          ]),
+          new Promise((resolve) => setTimeout(resolve, 1500)),
+        ])
+          .then(start)
+          .catch(finish);
+
+        window.setTimeout(finish, 5000);
       })();
     </script>
   </body>
