@@ -9,6 +9,13 @@
     />
     <meta name="theme-color" content="#10234a" />
     <title>Elton Tarnhovi | Autoconhecimento e desenvolvimento</title>
+    <script>
+      try {
+        if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+          document.documentElement.classList.add("has-splash");
+        }
+      } catch (error) {}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -136,6 +143,41 @@
         background: var(--navy-deep);
         color: #fff;
         isolation: isolate;
+      }
+
+      html.has-splash,
+      html.has-splash body {
+        overflow: hidden;
+      }
+
+      .splash-screen {
+        display: none;
+      }
+
+      html.has-splash .splash-screen {
+        position: fixed;
+        z-index: 9999;
+        inset: 0;
+        display: grid;
+        overflow: hidden;
+        place-items: center;
+        background: var(--navy-deep);
+        opacity: 1;
+        pointer-events: auto;
+        will-change: opacity, background-color;
+      }
+
+      .splash-screen__logo {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: min(70vw, 460px);
+        max-height: min(38vh, 220px);
+        object-fit: contain;
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.82);
+        transform-origin: center;
+        will-change: opacity, transform;
       }
 
       .site-logo {
@@ -1321,6 +1363,10 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
+        .splash-screen {
+          display: none !important;
+        }
+
         html {
           scroll-behavior: auto;
         }
@@ -1356,6 +1402,9 @@
     </style>
   </head>
   <body>
+    <div class="splash-screen" aria-hidden="true">
+      <img class="splash-screen__logo" src="assets/LOGO%20.png" alt="" />
+    </div>
     <main id="inicio">
       <section class="hero" aria-labelledby="hero-title">
         <a class="site-logo" href="#inicio" aria-label="Voltar ao início do site">
@@ -1598,5 +1647,84 @@
         </nav>
       </div>
     </footer>
+    <script>
+      (() => {
+        const page = document.documentElement;
+        const splash = document.querySelector(".splash-screen");
+        const splashLogo = document.querySelector(".splash-screen__logo");
+        const siteLogo = document.querySelector(".site-logo");
+        const siteLogoImage = siteLogo?.querySelector("img");
+
+        if (!page.classList.contains("has-splash") || !splash || !splashLogo || !siteLogoImage) {
+          return;
+        }
+
+        const finishSplash = () => {
+          splash.remove();
+          page.classList.remove("has-splash");
+        };
+
+        const animateSplash = () => {
+          const start = splashLogo.getBoundingClientRect();
+          const destination = siteLogoImage.getBoundingClientRect();
+
+          if (!start.width || !start.height || !destination.width || !destination.height) {
+            finishSplash();
+            return;
+          }
+
+          const offsetX = destination.left + destination.width / 2 - window.innerWidth / 2;
+          const offsetY = destination.top + destination.height / 2 - window.innerHeight / 2;
+          const scaleX = destination.width / start.width;
+          const scaleY = destination.height / start.height;
+          const finalTransform = `translate(calc(-50% + ${offsetX}px), calc(-50% + ${offsetY}px)) scale(${scaleX}, ${scaleY})`;
+          const centeredTransform = "translate(-50%, -50%) scale(1)";
+
+          const logoAnimation = splashLogo.animate(
+            [
+              { opacity: 0, transform: "translate(-50%, -50%) scale(0.82)", offset: 0 },
+              {
+                opacity: 1,
+                transform: "translate(-50%, -50%) scale(1.06)",
+                offset: 0.14,
+                easing: "cubic-bezier(0.22, 0.8, 0.25, 1)",
+              },
+              { opacity: 1, transform: centeredTransform, offset: 0.26 },
+              { opacity: 1, transform: centeredTransform, offset: 0.43 },
+              {
+                opacity: 1,
+                transform: finalTransform,
+                offset: 0.94,
+                easing: "cubic-bezier(0.65, 0, 0.35, 1)",
+              },
+              { opacity: 1, transform: finalTransform, offset: 1 },
+            ],
+            { duration: 2600, fill: "forwards" }
+          );
+
+          const backgroundAnimation = splash.animate(
+            [
+              { backgroundColor: "#071632", opacity: 1, offset: 0 },
+              { backgroundColor: "#f4470b", opacity: 1, offset: 0.14 },
+              { backgroundColor: "#f4470b", opacity: 1, offset: 0.38 },
+              { backgroundColor: "#10234a", opacity: 1, offset: 0.6 },
+              { backgroundColor: "#071632", opacity: 1, offset: 0.82 },
+              { backgroundColor: "#071632", opacity: 0, offset: 1 },
+            ],
+            { duration: 2600, easing: "ease-in-out", fill: "forwards" }
+          );
+
+          Promise.all([logoAnimation.finished, backgroundAnimation.finished])
+            .then(finishSplash)
+            .catch(finishSplash);
+        };
+
+        Promise.all([splashLogo.decode?.().catch(() => {}), siteLogoImage.decode?.().catch(() => {})])
+          .then(animateSplash)
+          .catch(finishSplash);
+
+        window.setTimeout(finishSplash, 4000);
+      })();
+    </script>
   </body>
 </html>
